@@ -160,11 +160,6 @@ fn flash(sess: &mut Session, elf_path: &Path, opts: &cli::Opts) -> anyhow::Resul
         log::info!("skipped flashing");
     } else {
         let fp = Some(flashing_progress());
-
-        if opts.erase_all {
-            flashing::erase_all(sess, fp.clone())?;
-        }
-
         let mut options = flashing::DownloadOptions::default();
         options.dry_run = false;
         options.progress = fp;
